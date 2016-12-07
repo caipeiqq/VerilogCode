@@ -29,3 +29,7 @@
 *.tmw_info
 *.dat
 *.syn_hier_info
+*.sft
+*.vo
+*.sdo
+*.xrf
