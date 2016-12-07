@@ -1,3 +1,4 @@
+
 module QC12864B(
 
     clk, rst_n,
@@ -13,20 +14,17 @@ module QC12864B(
 	//1.1 输入
 	input clk;
 	input rst_n;
-//	input BUSY;					//读忙标志                  位 
 	
 	//1.2 输出
 	output      RS;         //数据-高,指令-低
 	output      RW;         //读-高，写-低
 	output      PSB;	      //并口-高，串口-低
-	output      EN;         //使能-高
-	//output      REST ;      //复位-低有效                                                                           
+	output      EN;         //使能-高                                                                         
 	output[7:0] DB;         //三态数据线
-	//output[3:0] led;
+	
 	
 	//1.3 寄存器
 	reg [7:0] 	state;
-	//reg [7:0] 	nextstate;
 	reg[3:0] led;
 	
 	reg       RS;         //数据-高,指令-低
@@ -236,56 +234,63 @@ module QC12864B(
 	 end
 
 //////////////////////////////////////////////////////////////////////
-reg[7:0] ddram;	
-always@(cnt_addr)begin                 //写入需要的字符数据
-		case(cnt_addr)
-			//A
-			0:ddram =8'hA3;//
-			1:ddram =8'hC1;//
-			//相
-			2:ddram =8'hCF;//
-			3:ddram =8'hE0;//
-			//：
-			4:ddram =8'hA3;//
-			5:ddram =8'hBA;//
-			//V
-			6:ddram =8'hA3;//
-			7:ddram =8'hD6;//
-			//=
-			8:ddram =8'hA3;//
-			9:ddram =8'hBD;//
-			//3
-			10:ddram=8'hA3;//
-			11:ddram=8'hB3;//
-			//伏
-			12:ddram=8'hB7;//
-			13:ddram=8'hFC;//
-			//，
-			14:ddram=8'hA3;// 
-			15:ddram=8'hAC;//
-			
-			//I
-			16:ddram=8'hA3;//
-			17:ddram=8'hC9;//
-			//=
-			18:ddram=8'hA3;//
-			19:ddram=8'hBD;//
-			//2
-			20:ddram=8'hA3;//
-			21:ddram=8'hB2;//
-			//安
-			22:ddram=8'hB0;//
-			23:ddram=8'hB2;//
-			//
-			24:ddram=8'hA1;//
-			25:ddram=8'hA0;//
-			//
-			26:ddram=8'hA3;//
-			27:ddram=8'hA6;//		
+parameter 
 
-			default:  ddram=8'hxx;
-		endcase
-	end
+
+
+
+
+
+//reg[7:0] ddram;	
+//always@(cnt_addr)begin                 //写入需要的字符数据
+//		case(cnt_addr)
+//			//
+//			0:ddram =8'h55;//U
+//			1:ddram =8'h31;//1
+//			//
+//			2:ddram =8'hCF;//=
+//			3:ddram =8'hE0;//
+//			//：
+//			4:ddram =8'hA3;//
+//			5:ddram =8'hBA;//
+//			//V
+//			6:ddram =8'hA3;//
+//			7:ddram =8'hD6;//
+//			//=
+//			8:ddram =8'hA3;//
+//			9:ddram =8'hBD;//
+//			//3
+//			10:ddram=8'hA3;//
+//			11:ddram=8'hB3;//
+//			//伏
+//			12:ddram=8'hB7;//
+//			13:ddram=8'hFC;//
+//			//，
+//			14:ddram=8'hA3;// 
+//			15:ddram=8'hAC;//
+//			
+//			//I
+//			16:ddram=8'hA3;//
+//			17:ddram=8'hC9;//
+//			//=
+//			18:ddram=8'hA3;//
+//			19:ddram=8'hBD;//
+//			//2
+//			20:ddram=8'hA3;//
+//			21:ddram=8'hB2;//
+//			//安
+//			22:ddram=8'hB0;//
+//			23:ddram=8'hB2;//
+//			//
+//			24:ddram=8'hA1;//
+//			25:ddram=8'hA0;//
+//			//
+//			26:ddram=8'hA3;//
+//			27:ddram=8'hA6;//		
+//
+//			default:  ddram=8'hxx;
+//		endcase
+//	end
 
 endmodule
 

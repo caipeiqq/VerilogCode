@@ -146,7 +146,7 @@ always @(posedge clk_lcd or negedge rst_n)
       begin
        DB <= 8'h80; //Line1
       end
-      else if(char_cnt ==16)//第二次设置时，是设置第二行的首字符地址
+      else if(char_cnt ==16)//第二次设置时，是设置第二行的首字符地址 
       begin
        DB <= 8'h90; 
       end
