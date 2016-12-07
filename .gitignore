@@ -59,3 +59,7 @@
 1.1 Easy to understand/le12_mux16/simulation/modelsim/maxii_atoms.v
 1.1 Easy to understand/le12_mux16/simulation/modelsim/rtl_work/_info
 1.1 Easy to understand/le12_mux16/simulation/modelsim/vtf_test.v
+1.1 Easy to understand/le13_VGA/simulation/modelsim/msim_transcript
+*.wlf
+1.1 Easy to understand/le13_VGA/simulation/modelsim/rtl_work/_vmake
+1.1 Easy to understand/le13_VGA/simulation/modelsim/rtl_work/_info
