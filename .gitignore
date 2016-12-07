@@ -33,3 +33,8 @@
 *.vo
 *.sdo
 *.xrf
+*.rvd
+*.bak
+*.cdf
+*.csv
+*.tcl
