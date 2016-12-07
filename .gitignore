@@ -47,3 +47,15 @@
 *.vwf
 *.v~
 *.dpf
+*.ini
+1.1 Easy to understand/le12_mux16/simulation/modelsim/msim_transcript
+*.do
+*.prw
+*.psm
+*.dbs
+*.vhd
+*.
+1.1 Easy to understand/le12_mux16/simulation/modelsim/rtl_work/_vmake
+1.1 Easy to understand/le12_mux16/simulation/modelsim/maxii_atoms.v
+1.1 Easy to understand/le12_mux16/simulation/modelsim/rtl_work/_info
+1.1 Easy to understand/le12_mux16/simulation/modelsim/vtf_test.v
