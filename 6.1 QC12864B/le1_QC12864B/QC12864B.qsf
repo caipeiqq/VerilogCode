@@ -48,7 +48,6 @@ set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 256
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
-set_global_assignment -name VERILOG_FILE QC12864B.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -62,16 +61,11 @@ set_location_assignment PIN_N6 -to DB[2]
 set_location_assignment PIN_M6 -to DB[1]
 set_location_assignment PIN_P8 -to DB[0]
 set_location_assignment PIN_T2 -to PSB
-set_location_assignment PIN_N2 -to REST
 set_location_assignment PIN_M8 -to EN
 set_location_assignment PIN_M9 -to RS
 set_location_assignment PIN_P9 -to RW
 set_location_assignment PIN_R9 -to clk
 set_location_assignment PIN_M1 -to rst_n
-set_location_assignment PIN_J1 -to led[0]
-set_location_assignment PIN_J2 -to led[1]
-set_location_assignment PIN_K1 -to led[2]
-set_location_assignment PIN_K2 -to led[3]
 set_global_assignment -name USE_CONFIGURATION_DEVICE ON
 set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
@@ -79,7 +73,7 @@ set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim (Verilog)"
-set_global_assignment -name EDA_TIME_SCALE "1 ns" -section_id eda_simulation
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
@@ -89,4 +83,6 @@ set_global_assignment -name EDA_TEST_BENCH_NAME QC12864B_vlg_tst -section_id eda
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME i1 -section_id QC12864B_vlg_tst
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME QC12864B_vlg_tst -section_id QC12864B_vlg_tst
 set_global_assignment -name EDA_TEST_BENCH_FILE simulation/modelsim/QC12864B.vt -section_id QC12864B_vlg_tst
+set_global_assignment -name VERILOG_FILE sreen.v
+set_global_assignment -name VERILOG_FILE QC12864B.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

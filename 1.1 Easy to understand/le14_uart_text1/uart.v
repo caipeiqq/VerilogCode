@@ -1,4 +1,4 @@
-module uart(
+module uart_top(
 		clk,rst_n,
 		rs232_rx,rs232_tx,
 		cs,dx

@@ -240,11 +240,11 @@ reg[7:0] ddram;
 always@(cnt_addr)begin                 //写入需要的字符数据
 		case(cnt_addr)
 			//A
-			0:ddram =8'hA3;//
-			1:ddram =8'hC1;//
+			0:ddram =8'h00;//
+			1:ddram =8'h00;//
 			//相
-			2:ddram =8'hCF;//
-			3:ddram =8'hE0;//
+			2:ddram =8'hFF;//
+			3:ddram =8'hFF;//
 			//：
 			4:ddram =8'hA3;//
 			5:ddram =8'hBA;//
