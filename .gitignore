@@ -67,3 +67,8 @@
 *.tdf
 *.bak1
 *.bak10
+*.ammdb
+*.flock
+*.idb
+*.ipinfo
+*.jdi
