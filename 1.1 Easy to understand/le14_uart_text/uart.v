@@ -1,11 +1,11 @@
-module uart_top(
+ï»¿module uart_top(
 		clk,rst_n,
 		rs232_rx,rs232_tx
 );
 
-input clk;			// 50MHzÖ÷Ê±ÖÓ
-input rst_n;		//µÍµçÆ½¸´Î»ĞÅºÅ
+input clk;			// 50MHzä¸»æ—¶é’Ÿ
+input rst_n;		//ä½ç”µå¹³å¤ä½ä¿¡å·
 
-input rs232_rx;		// RS232½ÓÊÕÊı¾İĞÅºÅ
-output rs232_tx;	//	RS232·¢ËÍÊı¾İĞÅºÅ
+input rs232_rx;		// RS232æ¥æ”¶æ•°æ®ä¿¡å·
+output rs232_tx;	//	RS232å‘é€æ•°æ®ä¿¡å·
 

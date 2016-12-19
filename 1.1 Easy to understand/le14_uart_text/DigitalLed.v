@@ -1,4 +1,5 @@
-//ÊµÑéÄ¿µÄ£ºÁ½Î»ÊıÂë¹Ü£¬´Ó0µ½fÑ­»·µİÔö
+//å®éªŒç›®çš„ï¼šä¸¤ä½æ•°ç ç®¡ï¼Œä»0åˆ°få¾ªç¯é€’å¢
+	`timescale 1ns / 1ps
 	module DigitalLed(
 		clk ,rst_n,
 		rx_data,
@@ -7,20 +8,20 @@
 
 
 	input clk	; //50MHz
-	input rst_n	; //µÍµçÆ½ÓĞĞ§
+	input rst_n	; //ä½ç”µå¹³æœ‰æ•ˆ
 	input[7:0] rx_data;
 
-	output[1:0] cs;//Î»Ñ¡£¬µÍÓĞĞ§
-	output[7:0] dx; //¶ÎÑ¡
+	output[1:0] cs;//ä½é€‰ï¼Œä½æœ‰æ•ˆ
+	output[7:0] dx; //æ®µé€‰
 
 	//parameter rx_data = 28'd25_123_456;
-	//ÑÓÊ±Ê±¼ä
+	//å»¶æ—¶æ—¶é—´
 	parameter T1S 	   = 26'd50_000_000;
 	parameter T500MS  = 26'd25_000_000;
 	parameter T1MS  	= 26'd50_000;
 	parameter T500US  = 26'd25_000;
 	
-	//ÊıÂë¹Ü±àÂë
+	//æ•°ç ç®¡ç¼–ç 
 	parameter N0 = 8'b1100_0000;
 	parameter N1 = 8'b1111_1001;			
 	parameter N2 = 8'b1010_0100;	
@@ -46,7 +47,7 @@
 	end
 	
 	
-	//0.ÑÓÊ±
+	//0.å»¶æ—¶
 	reg[25:0] cnt;
 	always @(posedge clk or negedge rst_n)begin
 		if(!rst_n) cnt <= 26'd0;
@@ -61,7 +62,7 @@
 		else if(cnt == T1MS)cnt_ms <= cnt_ms + 5'd1;
 	end
 
-	//1.È¡Î»Ä£¿é
+	//1.å–ä½æ¨¡å—
 	reg[7:0] oneData;
 	reg[7:0] tenData;
 
@@ -75,8 +76,8 @@
 		else tenData <= data /10 %10;
 	end
 
-	//2.×ªSMGÂë
-	//2.1 oneData¶ÎÑ¡
+	//2.è½¬SMGç 
+	//2.1 oneDataæ®µé€‰
 	reg[7:0] oneData_smg;
 	always @(posedge clk or negedge rst_n)begin
 		if(!rst_n) oneData_smg <= 8'd0;
@@ -103,7 +104,7 @@
 		end		
 	end
 	
-	//2.2 tenData¶ÎÑ¡
+	//2.2 tenDataæ®µé€‰
 	reg[7:0] tenData_smg;
 	always @(posedge clk or negedge rst_n)begin
 		if(!rst_n) tenData_smg <= 8'd0;
@@ -131,7 +132,7 @@
 	end
 	
 
-	//3. Êä³öÆ¬Ñ¡ºÍ¶ÎÑ¡
+	//3. è¾“å‡ºç‰‡é€‰å’Œæ®µé€‰
 	reg[1:0] cs_r;
 	reg[7:0] dx_r;
 	always @(posedge clk or negedge rst_n)begin
@@ -141,11 +142,11 @@
 		end
 		else if(cnt_ms == 5'd20) begin
 			cs_r  <= 2'b10;
-			dx_r <= oneData_smg;			//¸öÎ»		
+			dx_r <= oneData_smg;			//ä¸ªä½		
 		end
 		else if(cnt_ms == 5'd10) begin
 			cs_r  <= 2'b01;
-			dx_r <= tenData_smg;			//°ÙÎ»		
+			dx_r <= tenData_smg;			//ç™¾ä½		
 		end
 	end	
 

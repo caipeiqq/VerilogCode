@@ -24,17 +24,17 @@ module my_uart_tx(
 				clk_bps,bps_start
 			);
 
-input clk;			// 50MHzÖ÷Ê±ÖÓ
-input rst_n;		//µÍµçÆ½¸´Î»ĞÅºÅ
-input clk_bps;		// clk_bps_r¸ßµçÆ½Îª½ÓÊÕÊı¾İÎ»µÄÖĞ¼ä²ÉÑùµã,Í¬Ê±Ò²×÷Îª·¢ËÍÊı¾İµÄÊı¾İ¸Ä±äµã
-input[7:0] rx_data;	//½ÓÊÕÊı¾İ¼Ä´æÆ÷
-input rx_int;		//½ÓÊÕÊı¾İÖĞ¶ÏĞÅºÅ,½ÓÊÕµ½Êı¾İÆÚ¼äÊ¼ÖÕÎª¸ßµçÆ½,ÔÚ¸ÃÄ£¿éÖĞÀûÓÃËüµÄÏÂ½µÑØÀ´Æô¶¯´®¿Ú·¢ËÍÊı¾İ
-output rs232_tx;	// RS232·¢ËÍÊı¾İĞÅºÅ
-output bps_start;	//½ÓÊÕ»òÕßÒª·¢ËÍÊı¾İ£¬²¨ÌØÂÊÊ±ÖÓÆô¶¯ĞÅºÅÖÃÎ»
+input clk;			// 50MHzä¸»æ—¶é’Ÿ
+input rst_n;		//ä½ç”µå¹³å¤ä½ä¿¡å·
+input clk_bps;		// clk_bps_ré«˜ç”µå¹³ä¸ºæ¥æ”¶æ•°æ®ä½çš„ä¸­é—´é‡‡æ ·ç‚¹,åŒæ—¶ä¹Ÿä½œä¸ºå‘é€æ•°æ®çš„æ•°æ®æ”¹å˜ç‚¹
+input[7:0] rx_data;	//æ¥æ”¶æ•°æ®å¯„å­˜å™¨
+input rx_int;		//æ¥æ”¶æ•°æ®ä¸­æ–­ä¿¡å·,æ¥æ”¶åˆ°æ•°æ®æœŸé—´å§‹ç»ˆä¸ºé«˜ç”µå¹³,åœ¨è¯¥æ¨¡å—ä¸­åˆ©ç”¨å®ƒçš„ä¸‹é™æ²¿æ¥å¯åŠ¨ä¸²å£å‘é€æ•°æ®
+output rs232_tx;	// RS232å‘é€æ•°æ®ä¿¡å·
+output bps_start;	//æ¥æ”¶æˆ–è€…è¦å‘é€æ•°æ®ï¼Œæ³¢ç‰¹ç‡æ—¶é’Ÿå¯åŠ¨ä¿¡å·ç½®ä½
 
 //---------------------------------------------------------
-reg rx_int0,rx_int1,rx_int2;	//rx_intĞÅºÅ¼Ä´æÆ÷£¬²¶×½ÏÂ½µÑØÂË²¨ÓÃ
-wire neg_rx_int;	// rx_intÏÂ½µÑØ±êÖ¾Î»
+reg rx_int0,rx_int1,rx_int2;	//rx_intä¿¡å·å¯„å­˜å™¨ï¼Œæ•æ‰ä¸‹é™æ²¿æ»¤æ³¢ç”¨
+wire neg_rx_int;	// rx_intä¸‹é™æ²¿æ ‡å¿—ä½
 
 always @ (posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
@@ -49,13 +49,13 @@ always @ (posedge clk or negedge rst_n) begin
 		end
 end
 
-assign neg_rx_int =  ~rx_int1 & rx_int2;	//²¶×½µ½ÏÂ½µÑØºó£¬neg_rx_intÀ­¸ß±£³ÖÒ»¸öÖ÷Ê±ÖÓÖÜÆÚ
+assign neg_rx_int =  ~rx_int1 & rx_int2;	//æ•æ‰åˆ°ä¸‹é™æ²¿åï¼Œneg_rx_intæ‹‰é«˜ä¿æŒä¸€ä¸ªä¸»æ—¶é’Ÿå‘¨æœŸ
 
 //---------------------------------------------------------
-reg[7:0] tx_data;	//´ı·¢ËÍÊı¾İµÄ¼Ä´æÆ÷
+reg[7:0] tx_data;	//å¾…å‘é€æ•°æ®çš„å¯„å­˜å™¨
 //---------------------------------------------------------
 reg bps_start_r;
-reg tx_en;	//·¢ËÍÊı¾İÊ¹ÄÜĞÅºÅ£¬¸ßÓĞĞ§
+reg tx_en;	//å‘é€æ•°æ®ä½¿èƒ½ä¿¡å·ï¼Œé«˜æœ‰æ•ˆ
 reg[3:0] num;
 
 always @ (posedge clk or negedge rst_n) begin
@@ -64,12 +64,12 @@ always @ (posedge clk or negedge rst_n) begin
 			tx_en <= 1'b0;
 			tx_data <= 8'd0;
 		end
-	else if(neg_rx_int) begin	//½ÓÊÕÊı¾İÍê±Ï£¬×¼±¸°Ñ½ÓÊÕµ½µÄÊı¾İ·¢»ØÈ¥
+	else if(neg_rx_int) begin	//æ¥æ”¶æ•°æ®å®Œæ¯•ï¼Œå‡†å¤‡æŠŠæ¥æ”¶åˆ°çš„æ•°æ®å‘å›å»
 			bps_start_r <= 1'b1;
-			tx_data <= rx_data;	//°Ñ½ÓÊÕµ½µÄÊı¾İ´æÈë·¢ËÍÊı¾İ¼Ä´æÆ÷
-			tx_en <= 1'b1;		//½øÈë·¢ËÍÊı¾İ×´Ì¬ÖĞ
+			tx_data <= rx_data;	//æŠŠæ¥æ”¶åˆ°çš„æ•°æ®å­˜å…¥å‘é€æ•°æ®å¯„å­˜å™¨
+			tx_en <= 1'b1;		//è¿›å…¥å‘é€æ•°æ®çŠ¶æ€ä¸­
 		end
-	else if(num==4'd11) begin	//Êı¾İ·¢ËÍÍê³É£¬¸´Î»
+	else if(num==4'd11) begin	//æ•°æ®å‘é€å®Œæˆï¼Œå¤ä½
 			bps_start_r <= 1'b0;
 			tx_en <= 1'b0;
 		end
@@ -89,20 +89,20 @@ always @ (posedge clk or negedge rst_n) begin
 			if(clk_bps)	begin
 					num <= num+1'b1;
 					case (num)
-						4'd0: rs232_tx_r <= 1'b0; 	//·¢ËÍÆğÊ¼Î»
-						4'd1: rs232_tx_r <= tx_data[0];	//·¢ËÍbit0
-						4'd2: rs232_tx_r <= tx_data[1];	//·¢ËÍbit1
-						4'd3: rs232_tx_r <= tx_data[2];	//·¢ËÍbit2
-						4'd4: rs232_tx_r <= tx_data[3];	//·¢ËÍbit3
-						4'd5: rs232_tx_r <= tx_data[4];	//·¢ËÍbit4
-						4'd6: rs232_tx_r <= tx_data[5];	//·¢ËÍbit5
-						4'd7: rs232_tx_r <= tx_data[6];	//·¢ËÍbit6
-						4'd8: rs232_tx_r <= tx_data[7];	//·¢ËÍbit7
-						4'd9: rs232_tx_r <= 1'b1;	//·¢ËÍ½áÊøÎ»
+						4'd0: rs232_tx_r <= 1'b0; 	//å‘é€èµ·å§‹ä½
+						4'd1: rs232_tx_r <= tx_data[0];	//å‘é€bit0
+						4'd2: rs232_tx_r <= tx_data[1];	//å‘é€bit1
+						4'd3: rs232_tx_r <= tx_data[2];	//å‘é€bit2
+						4'd4: rs232_tx_r <= tx_data[3];	//å‘é€bit3
+						4'd5: rs232_tx_r <= tx_data[4];	//å‘é€bit4
+						4'd6: rs232_tx_r <= tx_data[5];	//å‘é€bit5
+						4'd7: rs232_tx_r <= tx_data[6];	//å‘é€bit6
+						4'd8: rs232_tx_r <= tx_data[7];	//å‘é€bit7
+						4'd9: rs232_tx_r <= 1'b1;	//å‘é€ç»“æŸä½
 					 	default: rs232_tx_r <= 1'b1;
 						endcase
 				end
-			else if(num==4'd11) num <= 4'd0;	//¸´Î»
+			else if(num==4'd11) num <= 4'd0;	//å¤ä½
 		end
 end
 
