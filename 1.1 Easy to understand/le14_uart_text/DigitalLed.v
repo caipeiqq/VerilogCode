@@ -2,14 +2,14 @@
 	`timescale 1ns / 1ps
 	module DigitalLed(
 		clk ,rst_n,
-		data,
+		rx_data,
 	   cs, dx
 	);
 
 
 	input clk	; //50MHz
 	input rst_n	; //低电平有效
-	input[7:0] data;
+	input[7:0] rx_data;
 
 	output[1:0] cs;//位选，低有效
 	output[7:0] dx; //段选
@@ -40,7 +40,7 @@
 	parameter NF = 8'b1000_1110;	
 
 	
-	//reg[7:0] data;
+	reg[7:0] data;
 	always @(posedge clk or negedge rst_n)begin
 		if(!rst_n) data <= 8'd0;
 		else data <= rx_data;
