@@ -43,21 +43,27 @@ parameter 		bps9600_2 	= 2603,
 */
 
 	//以下波特率分频计数值可参照上面的参数进行更改
+	// BPS_PARA = 1 / 9600 *10^9 / 20ns
 `define		BPS_PARA		5207	//波特率为9600时的分频计数值
 `define 	BPS_PARA_2		2603	//波特率为9600时的分频计数值的一半，用于数据采样
 
-reg[12:0] cnt;			//分频计数
-reg clk_bps_r;			//波特率时钟寄存器
+
+
 
 //----------------------------------------------------------
 reg[2:0] uart_ctrl;	// uart波特率选择寄存器
 //----------------------------------------------------------
-
+//////////////////////////////////////////////////////////
+//BPS_PARA分频计数,bps_start
+reg[12:0] cnt;			
 always @ (posedge clk or negedge rst_n)
 	if(!rst_n) cnt <= 13'd0;
 	else if((cnt == `BPS_PARA) || !bps_start) cnt <= 13'd0;	//波特率计数清零
 	else cnt <= cnt+1'b1;			//波特率时钟计数启动
 
+//////////////////////////////////////////////////////////
+// clk_bps_r高电平为接收数据位的中间采样点,同时也作为发送数据的数据改变点
+reg clk_bps_r;			//波特率时钟寄存器
 always @ (posedge clk or negedge rst_n)
 	if(!rst_n) clk_bps_r <= 1'b0;
 	else if(cnt == `BPS_PARA_2) clk_bps_r <= 1'b1;	// clk_bps_r高电平为接收数据位的中间采样点,同时也作为发送数据的数据改变点

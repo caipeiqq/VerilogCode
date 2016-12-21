@@ -29,14 +29,14 @@ wire rx_int;		//接收数据中断信号,接收到数据期间始终为高电平
 //	if(!rst_n) data <= 8'h0;
 //	else data <= 8'd56;
 //end	
-//
-//DigitalLed		my_DigitalLed(
-//						.clk(clk) ,
-//						.rst_n(rst_n),
-//						.data(rx_data),
-//						.cs(cs), 
-//						.dx(dx)
-//					);		
+
+DigitalLed		my_DigitalLed(
+						.clk(clk) ,
+						.rst_n(rst_n),
+						.rx_data(rx_data),
+						.cs(cs), 
+						.dx(dx)
+					);		
 
 ////////////////////////////////////////////
 //波特率选择模块

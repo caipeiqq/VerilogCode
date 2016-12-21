@@ -1,5 +1,6 @@
+`timescale 1ns / 1ps
 //实验目的：两位数码管，从0到f循环递增
-	`timescale 1ns / 1ps
+	
 	module DigitalLed(
 		clk ,rst_n,
 		rx_data,
@@ -18,7 +19,7 @@
 	//延时时间
 	parameter T1S 	   = 26'd50_000_000;
 	parameter T500MS  = 26'd25_000_000;
-	parameter T1MS  	= 26'd49_999;    //26'd50_000;
+	parameter T1MS  	= 26'd50_000;
 	parameter T500US  = 26'd25_000;
 	
 	//数码管编码
@@ -42,8 +43,8 @@
 	
 	reg[7:0] data;
 	always @(posedge clk or negedge rst_n)begin
-		if(!rst_n) data <= 8'hff;
-		else if(rx_data != 8'hff)data <= rx_data;
+		if(!rst_n) data <= 8'd0;
+		else if(!rx_data)data <= rx_data;
 	end
 	
 	
